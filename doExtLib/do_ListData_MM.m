@@ -73,7 +73,7 @@
 {
     NSDictionary *_dictParas = [parms objectAtIndex:0];
     //自己的代码实现
-    int temp = (int)array.count-1;
+    int temp = (int)array.count;
     NSArray* datas =[doJsonHelper GetOneArray:_dictParas :@"data"];
     int index = [doJsonHelper GetOneInteger:_dictParas :@"index" :temp];
     if(index>temp)
@@ -90,7 +90,7 @@
 {
     NSDictionary *_dictParas = [parms objectAtIndex:0];
     //自己的代码实现
-    int temp = (int)array.count-1;
+    int temp = (int)array.count;
     id data =[doJsonHelper GetOneValue:_dictParas :@"data"];
     int index = [doJsonHelper GetOneInteger:_dictParas :@"index" :temp];
     if(index>temp)
