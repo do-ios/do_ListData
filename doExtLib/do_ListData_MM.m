@@ -137,7 +137,7 @@
             _index=[[doTextHelper Instance] StrToInt:index :-2];
         else if([index isKindOfClass:[NSNumber class]])
             _index = ((NSNumber*)index).intValue;
-        int temp = (int)array.count-1;
+            int temp = (int)array.count-1;
         if(_index == -1)
         {
             [result addObject:array.lastObject];
@@ -210,7 +210,7 @@
     int toIndex = [doJsonHelper GetOneInteger:_dictParas :@"toIndex" : -1];
     if(fromIndex<0||toIndex<0) return;
     if(toIndex>temp) return;
-    int length = toIndex-fromIndex;
+    int length = (toIndex-fromIndex)+1;
     if(length<0)return;
     NSRange range = NSMakeRange(fromIndex, length);
     [array removeObjectsInRange:range];
