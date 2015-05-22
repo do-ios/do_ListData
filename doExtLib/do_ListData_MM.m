@@ -162,9 +162,11 @@
     if(toIndex>temp)toIndex = temp;
     if(toIndex<0)toIndex = 0;
     NSMutableArray* result = [[NSMutableArray alloc]init];
-    for(int i =fromIndex ;i<=toIndex;i++)
-    {
-        [result addObject:array[i]];
+    if (array.count>0) {
+        for(int i =fromIndex ;i<=toIndex;i++)
+        {
+            [result addObject:array[i]];
+        }
     }
     doInvokeResult *_invokeResult = [parms objectAtIndex:2];
     [_invokeResult SetResultArray:result ];
@@ -180,7 +182,9 @@
     NSDictionary *_dictParas = [parms objectAtIndex:0];
     //自己的代码实现
     int index = [doJsonHelper GetOneInteger:_dictParas :@"index" : 0];
-    [array removeObjectAtIndex:index];
+    if (array.count>0) {
+        [array removeObjectAtIndex:index];
+    }
 }
 - (void)removeData:(NSArray *)parms
 {
@@ -196,10 +200,12 @@
         else if([index isKindOfClass:[NSNumber class]])
             _index = ((NSNumber*)index).intValue;
         else continue;
-        if(_index>=0)
+        if(_index>=0 && _index<array.count)
            [result addIndex:_index];
     }
-    [array removeObjectsAtIndexes:result];
+    if (array.count > 0) {
+        [array removeObjectsAtIndexes:result];
+    }
 }
 - (void)removeRange:(NSArray *)parms
 {
@@ -213,7 +219,9 @@
     int length = (toIndex-fromIndex)+1;
     if(length<0)return;
     NSRange range = NSMakeRange(fromIndex, length);
-    [array removeObjectsInRange:range];
+    if (array.count>0) {
+        [array removeObjectsInRange:range];
+    }
 }
 - (void)updateOne:(NSArray *)parms
 {
