@@ -214,10 +214,10 @@
     int temp = (int)array.count-1;
     int fromIndex = [doJsonHelper GetOneInteger:_dictParas :@"fromIndex" : 0];
     int toIndex = [doJsonHelper GetOneInteger:_dictParas :@"toIndex" : -1];
-    if(fromIndex<0||toIndex<0) return;
-    if(toIndex>temp) return;
+    if(fromIndex<0) return;
+    if(toIndex>temp || toIndex==-1) toIndex = (int)array.count-1;
     int length = (toIndex-fromIndex)+1;
-    if(length<0)return;
+    if(length<0||length>array.count)return;
     NSRange range = NSMakeRange(fromIndex, length);
     if (array.count>0) {
         [array removeObjectsInRange:range];
