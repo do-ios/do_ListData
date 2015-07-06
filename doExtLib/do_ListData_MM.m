@@ -114,12 +114,22 @@
     int index = [doJsonHelper GetOneInteger:_dictParas :@"index" : temp];
     id _jsonValue;
     if(array.count==0)
+    {
         _jsonValue = [NSNull null];
+    }
     else{
-        if(index>=0&&index<=temp)
+        if (index < 0)
+        {
+            _jsonValue = array.firstObject;
+        }
+        else if (index >=0 && index <=temp)
+        {
             _jsonValue = array[index];
+        }
         else
+        {
             _jsonValue = array.lastObject;
+        }
     }
     doInvokeResult *_invokeResult = [parms objectAtIndex:2];
     [_invokeResult SetResultValue:_jsonValue];
