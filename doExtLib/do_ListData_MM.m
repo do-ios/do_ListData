@@ -65,6 +65,15 @@
 {
     return array;
 }
+
+#pragma mark - 父类方法重载
+-(void)LoadModelFromString:(NSString *)_moduleText
+{
+    id _rootJsonValue =[doJsonHelper LoadDataFromText : _moduleText];
+    NSArray *nodeArray = [doJsonHelper GetArray:_rootJsonValue];
+    [array addObjectsFromArray:nodeArray];
+}
+
 #pragma mark -
 #pragma mark - 同步异步方法的实现
 
