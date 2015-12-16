@@ -13,6 +13,8 @@
 #import "doInvokeResult.h"
 #import "doJsonHelper.h"
 #import "doTextHelper.h"
+#import "doServiceContainer.h"
+#import "doILogEngine.h"
 
 @implementation do_ListData_MM
 {
@@ -180,6 +182,20 @@
     int toIndex = [doJsonHelper GetOneInteger:_dictParas :@"toIndex" : temp];
     if(toIndex>temp)toIndex = temp;
     if(toIndex<0)toIndex = 0;
+    @try {
+        if (fromIndex > temp) {
+            [NSException raise:@"listData" format:@"fromIndex 参数值非法！"];
+        }
+        if (fromIndex >= toIndex) {
+            [NSException raise:@"listData" format:@"fromIndex 必须小于或等于 toIndex！"];
+        }
+    }
+    @catch (NSException *exception) {
+        [[doServiceContainer Instance].LogEngine WriteError:exception:exception.description];
+        doInvokeResult* _result = [[doInvokeResult alloc]init];
+        [_result SetException:exception];
+    }
+
     NSMutableArray* result = [[NSMutableArray alloc]init];
     if (array.count>0) {
         for(int i =fromIndex ;i<=toIndex;i++)
@@ -233,6 +249,19 @@
     int temp = (int)array.count-1;
     int fromIndex = [doJsonHelper GetOneInteger:_dictParas :@"fromIndex" : 0];
     int toIndex = [doJsonHelper GetOneInteger:_dictParas :@"toIndex" : -1];
+    @try {
+        if (fromIndex > temp) {
+            [NSException raise:@"listData" format:@"fromIndex 参数值非法！"];
+        }
+        if (fromIndex > toIndex) {
+            [NSException raise:@"listData" format:@"fromIndex 必须小于或等于 toIndex！"];
+        }
+    }
+    @catch (NSException *exception) {
+        [[doServiceContainer Instance].LogEngine WriteError:exception:exception.description];
+        doInvokeResult* _result = [[doInvokeResult alloc]init];
+        [_result SetException:exception];
+    }
     if(fromIndex<0) return;
     if(toIndex>temp || toIndex==-1) toIndex = (int)array.count-1;
     int length = (toIndex-fromIndex)+1;
