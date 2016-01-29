@@ -180,13 +180,16 @@
     int temp = (int)array.count-1;
     int fromIndex = [doJsonHelper GetOneInteger:_dictParas :@"fromIndex" : 0];
     int toIndex = [doJsonHelper GetOneInteger:_dictParas :@"toIndex" : temp];
+    if (fromIndex < 0) {
+        fromIndex = 0;
+    }
     if(toIndex>temp)toIndex = temp;
     if(toIndex<0)toIndex = 0;
     @try {
         if (fromIndex > temp) {
             [NSException raise:@"listData" format:@"fromIndex 参数值非法！"];
         }
-        if (fromIndex >= toIndex) {
+        if (fromIndex > toIndex) {
             [NSException raise:@"listData" format:@"fromIndex 必须小于或等于 toIndex！"];
         }
     }
@@ -194,6 +197,7 @@
         [[doServiceContainer Instance].LogEngine WriteError:exception:exception.description];
         doInvokeResult* _result = [[doInvokeResult alloc]init];
         [_result SetException:exception];
+        return;
     }
 
     NSMutableArray* result = [[NSMutableArray alloc]init];
