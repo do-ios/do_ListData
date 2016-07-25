@@ -93,8 +93,10 @@
         index = 0;
     
     for(id data in datas){
-        [array insertObject:data atIndex:index];
-        index++;
+        if (data&&![data isKindOfClass:[NSNull class]]) {
+            [array insertObject:data atIndex:index];
+            index++;
+        }
     }
 }
 - (void)addOne:(NSArray *)parms
@@ -108,8 +110,9 @@
         index = temp;
     if(index<0)
         index = 0;
-    [array insertObject:data atIndex:index];
-    
+    if (data&&![data isKindOfClass:[NSNull class]]) {
+        [array insertObject:data atIndex:index];
+    }
 }
 - (void)getCount:(NSArray *)parms
 {
@@ -282,7 +285,7 @@
     int index = [doJsonHelper GetOneInteger:_dictParas :@"index" : -1];
     id _jsonValue = [doJsonHelper GetOneValue:_dictParas :@"data"];
     int temp = (int)array.count-1;
-    if(index>=0&&index<=temp)
+    if(index>=0&&index<=temp&&_jsonValue&&![_jsonValue isKindOfClass:[NSNull class]])
         array[index] = _jsonValue;
 }
 //异步
