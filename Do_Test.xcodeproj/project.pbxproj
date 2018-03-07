@@ -17,6 +17,7 @@
 		A44BC6A21AEE008D001580AA /* doScriptEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A44BC69C1AEE008D001580AA /* doScriptEngine.m */; };
 		A44BC6A31AEE008D001580AA /* doService.m in Sources */ = {isa = PBXBuildFile; fileRef = A44BC69E1AEE008D001580AA /* doService.m */; };
 		A4A1A01D1AF0F83700D835A5 /* do_Test.json in Resources */ = {isa = PBXBuildFile; fileRef = A4A1A01C1AF0F82B00D835A5 /* do_Test.json */; };
+		BC41725E204FCD0E00A70055 /* do_ListData_IMM.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = CCFAEAD91B01D53C00AED8D5 /* do_ListData_IMM.h */; };
 		CCFAEA591B00322400AED8D5 /* libDoCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCFAEA581B00322400AED8D5 /* libDoCore.a */; };
 		CCFAEA921B00B16A00AED8D5 /* doPageViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAEA911B00B16A00AED8D5 /* doPageViewFactory.m */; };
 		CCFAEA991B00ECD800AED8D5 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCFAEA981B00ECD800AED8D5 /* ImageIO.framework */; };
@@ -55,6 +56,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				CCFAEADE1B01D5E500AED8D5 /* do_ListData_MM.h in CopyFiles */,
+				BC41725E204FCD0E00A70055 /* do_ListData_IMM.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
